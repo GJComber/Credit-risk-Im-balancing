@@ -1,39 +1,62 @@
-# Module 12 Report Template
+# Module 12 Analysis Report 
 
-## Overview of the Analysis
 
-In this section, describe the analysis you completed for the machine learning models used in this Challenge. This might include:
+## This is a Credit Risk Modeling technique analysis.
 
-* Explain the purpose of the analysis.
 
- Credit risk modeling techniques using machine learning to identify the risk of loan defaults 
 
-* Explain what financial information the data was on, and what you needed to predict.
-Looking at customer data from a lending company focusing on 'loan status' to determine default risk amongst the companies customers
-* Provide basic information about the variables you were trying to predict (e.g., `value_counts`).
-The identified risk in this example is based on a binary outcome of default or no, hence a Logistic Regression model was chosen which is a popular classification algorithm 
-* Describe the stages of the machine learning process you went through as part of this analysis.
-The process is to read in the data, identify the target data and seperate it from the remaining dataset. It is then evaluated for degree of imbalance seperated into subsets comprising training and testing data then modelled and the accuracy of the models predictions are evaluated
-* Briefly touch on any methods you used (e.g., `LogisticRegression`, or any resampling method).
- it was modelled with and without an added layer of random oversampling to compare methods for dealing with the imbalanced dataset.
+### _Purpose of the analysis._
+
+To compare several Machine learning models to determine which model performs the best in the task of identifying the risk of loan defaults.
+
+### _Financial information used._
+Looking at customer data from a lending company, it is focusing on 'loan status' to determine default risk amongst the companies customer base
+ 
+### _Variable summary and output required._
+The identified risk in this example is based on 'loan status' with a binary outcome of 'default' or 'not', hence a Logistic Regression model was chosen.
+This is a popular classification algorithm that works well with binary outputs.
+
+### _Stages of the machine learning analysis process._
+* Read in the data
+* Identify the target data and seperate it from the remaining dataset. 
+* Evaluate the size of the dataset and degree of imbalance within it.
+* Seperate the data into subsets comprising training and testing data.
+* Model the data and train it using the training subset.
+* Run predictions using the test subset.
+* Evaluate the accuracy of the models predictions using several metrics methods.
+
+
+### _Due to the inherently imbalanced nature of credit risk data, it is important to explore more than one method to determine the optimal model._
+For a comparison model the data was then resampled with an added layer of random oversampling.
+This is another process that can be overlayed onto the Logistic Regression model to mitigate the effects of imbalance within the dataset.
+Essentially the training subset of data is made to be of equal amounts of target and reference data prior to training then running predictions on that.
+Random oversampling increases the target data volume to be the same size as the reference data.
+ 
 ## Results
 
-Using bulleted lists, describe the balanced accuracy scores and the precision and recall scores of all machine learning models.
 
-* Machine Learning Model 1:
-  * Description of Model 1 Accuracy, Precision, and Recall scores.
-for this we are using a logistic Regression model which is a classification algorithm
+### _Machine Learning Model 1:_
+  *  Model 1 Logistic Regression model.
+  * Scores
+  + Accuracy    0.9520479254722232,    
+  + Precision   100% on safe loans and 85% on default loans, 
+  + Recall       99% on safe loans and 91% on default loans.   
 
 
-* Machine Learning Model 2:
-  * Description of Model 2 Accuracy, Precision, and Recall scores.
- Due to the inherently imbalanced nature of credit risk data, it is important to explore more than one method to determine the optimal model
+
+### _Machine Learning Model 2:_
+  * Model 2 Logistic Regression model, resampled with Random Oversampling method.
+  * Scores
+  + Accuracy    0.9936781215845847,    
+  + Precision   100% on safe loans and 84% on default loans, 
+  + Recall       99% on safe loans and 99% on default loans. 
+ 
 ## Summary
 
-Summarize the results of the machine learning models, and include a recommendation on the model to use, if any. For example:
-* Which one seems to perform best? How do you know it performs best?
-* Does performance depend on the problem we are trying to solve? (For example, is it more important to predict the `1`'s, or predict the `0`'s? )
+Both models performed well but the oversampled model was a better choice.
 
-If you do not recommend any of the models, please justify your reasoning.
+The Precision is more important than the Recall when trying to identify and reduce default risk. 
+The higher Specificity score is also important along with the higher Balanced Accuracy measure of the resampled model.
 
-Given that the adjusted  model was more accurate all round and where it was  wrong it tended to err on the conservative side, IE errors tended to be false negatives, with almost no false positives so for this business scenario I would recommend the ROS model
+### _My Recommendation_
+The adjusted  model was more accurate all round and where it was wrong it tended to err on the conservative side. Errors tended to be false negatives, with almost no false positives so for this business scenario I would recommend the Random Oversampled Logistic Regression model
